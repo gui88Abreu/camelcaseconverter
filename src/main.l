@@ -15,14 +15,27 @@ Se o programa encontrar alguma palavra que misture CamelCase e underline, devera
 
 %}
 
-UNDERLINE [a-z]+([_][a-z]+)+
-CAMELCASE [A-Z][a-z]+([A-Z][a-z]+)+
-CAMELCASE_MIXED_UNDERLINE {CAMELCASE}{UNDERLINE}
-UNDERLINE_MIXED_CAMELCASE {UNDERLINE}{CAMELCASE}
+UNDERLINE_SENTENCE [a-z]+([_][a-z0-9]+)+
+CAMELCASE ([A-Z][a-z0-9]+)+
+
+CAPITAL_LETTER ([a-z0-9]*[A-Z]+[a-z0-9]*)+
+UNDERLINE ([a-z0-9]*[_]+[a-z0-9]*)+
+
+VALID_TOKEN [A-Za-z0-9_]+
+MIXED_CASE1 {UNDERLINE}{CAPITAL_LETTER}
+MIXED_CASE2 {CAPITAL_LETTER}{UNDERLINE}
+MIXED_CASE [{MIXED_CASE1}{MIXED_CASE2}]
 
 %%
+{MIXED_CASE1} {
+  printf("ERRO\n");
+}
 
-{UNDERLINE} {
+{MIXED_CASE2} {
+  printf("ERRO\n");
+}
+
+{UNDERLINE_SENTENCE} {
   char camelCased[strlen(yytext)];
   underline_to_camelcase(yytext, camelCased);
   printf("%s\n", camelCased);
@@ -34,14 +47,6 @@ UNDERLINE_MIXED_CAMELCASE {UNDERLINE}{CAMELCASE}
   printf("%s\n", underlined);
 
   free(underlined);
-}
-
-{UNDERLINE_MIXED_CAMELCASE} {
-  printf("ERRO\n");
-}
-
-{CAMELCASE_MIXED_UNDERLINE} {
-  printf("ERRO\n");
 }
 
 [.\n]* ;
