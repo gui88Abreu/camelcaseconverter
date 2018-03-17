@@ -10,6 +10,7 @@ Se o programa encontrar alguma palavra que misture CamelCase e underline, devera
 
 #include <stdio.h>
 #include "ccc_lib.h"
+
 #include <stdlib.h>
 #include <string.h>
 
@@ -37,9 +38,10 @@ MIXED_CASE2 ({VALID_TOKEN}\ )*{CAPITAL_LETTER}{UNDERLINE}
 }
 
 {UNDERLINE_SENTENCE} {
-  char camelCased[strlen(yytext)];
+  char *camelCased = malloc(strlen(yytext)*sizeof(char));
   underline_to_camelcase(yytext, camelCased);
   printf("%s", camelCased);
+  free(camelCased);
 }
 
 {CAMELCASE} {
@@ -62,7 +64,6 @@ MIXED_CASE2 ({VALID_TOKEN}\ )*{CAPITAL_LETTER}{UNDERLINE}
 }
 
 . ;
-
 %%
 
 int main() {

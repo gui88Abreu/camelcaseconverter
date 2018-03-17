@@ -492,10 +492,11 @@ Se o programa encontrar alguma palavra que misture CamelCase e underline, devera
 
 #include <stdio.h>
 #include "ccc_lib.h"
+
 #include <stdlib.h>
 #include <string.h>
 
-#line 499 "src/main.c"
+#line 500 "src/main.c"
 
 #define INITIAL 0
 
@@ -713,9 +714,9 @@ YY_DECL
 		}
 
 	{
-#line 28 "src/main.l"
+#line 29 "src/main.l"
 
-#line 719 "src/main.c"
+#line 720 "src/main.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -774,7 +775,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 29 "src/main.l"
+#line 30 "src/main.l"
 {
   printf("ERRO\n");
   exit(1);
@@ -782,7 +783,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 34 "src/main.l"
+#line 35 "src/main.l"
 {
   printf("ERRO\n");
   exit(1);
@@ -790,16 +791,17 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 39 "src/main.l"
+#line 40 "src/main.l"
 {
-  char camelCased[strlen(yytext)];
+  char *camelCased = malloc(strlen(yytext)*sizeof(char));
   underline_to_camelcase(yytext, camelCased);
   printf("%s", camelCased);
+  free(camelCased);
 }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 45 "src/main.l"
+#line 47 "src/main.l"
 {
   char *underlined = malloc(2*strlen(yytext)*sizeof(char));
   camelcase_to_underline(yytext, underlined);
@@ -809,7 +811,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 52 "src/main.l"
+#line 54 "src/main.l"
 {
   printf("%s", yytext);
 }
@@ -817,29 +819,29 @@ YY_RULE_SETUP
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 56 "src/main.l"
+#line 58 "src/main.l"
 {
   printf("\n");
 }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 60 "src/main.l"
+#line 62 "src/main.l"
 {
   printf(" ");
 }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 64 "src/main.l"
+#line 66 "src/main.l"
 ;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 66 "src/main.l"
+#line 67 "src/main.l"
 ECHO;
 	YY_BREAK
-#line 843 "src/main.c"
+#line 845 "src/main.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1840,7 +1842,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 66 "src/main.l"
+#line 67 "src/main.l"
 
 
 

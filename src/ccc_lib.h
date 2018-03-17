@@ -1,4 +1,3 @@
-
 #ifndef CCC_LIB_H
 #define CCC_LIB_H
 
