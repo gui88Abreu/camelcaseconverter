@@ -376,8 +376,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 9
-#define YY_END_OF_BUFFER 10
+#define YY_NUM_RULES 8
+#define YY_END_OF_BUFFER 9
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -387,9 +387,9 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[31] =
     {   0,
-        0,    0,   10,    8,    6,    7,    5,    5,    8,    5,
-        0,    5,    5,    0,    5,    2,    5,    0,    1,    0,
-        5,    0,    0,    2,    5,    1,    3,    0,    4,    0
+        0,    0,    9,    7,    5,    6,    4,    4,    7,    4,
+        0,    4,    4,    0,    4,    1,    4,    0,    1,    0,
+        4,    0,    0,    1,    4,    1,    2,    0,    3,    0
     } ;
 
 static yyconst YY_CHAR yy_ec[256] =
@@ -785,23 +785,15 @@ case 2:
 YY_RULE_SETUP
 #line 35 "src/main.l"
 {
-  printf("ERRO\n");
-  exit(1);
-}
-	YY_BREAK
-case 3:
-YY_RULE_SETUP
-#line 40 "src/main.l"
-{
   char *camelCased = malloc(strlen(yytext)*sizeof(char));
   underline_to_camelcase(yytext, camelCased);
   printf("%s", camelCased);
   free(camelCased);
 }
 	YY_BREAK
-case 4:
+case 3:
 YY_RULE_SETUP
-#line 47 "src/main.l"
+#line 42 "src/main.l"
 {
   char *underlined = malloc(2*strlen(yytext)*sizeof(char));
   camelcase_to_underline(yytext, underlined);
@@ -809,39 +801,39 @@ YY_RULE_SETUP
   free(underlined);
 }
 	YY_BREAK
-case 5:
+case 4:
 YY_RULE_SETUP
-#line 54 "src/main.l"
+#line 49 "src/main.l"
 {
   printf("%s", yytext);
 }
 	YY_BREAK
-case 6:
-/* rule 6 can match eol */
+case 5:
+/* rule 5 can match eol */
 YY_RULE_SETUP
-#line 58 "src/main.l"
+#line 53 "src/main.l"
 {
   printf("\n");
 }
 	YY_BREAK
-case 7:
+case 6:
 YY_RULE_SETUP
-#line 62 "src/main.l"
+#line 57 "src/main.l"
 {
   printf(" ");
 }
 	YY_BREAK
-case 8:
+case 7:
 YY_RULE_SETUP
-#line 66 "src/main.l"
+#line 61 "src/main.l"
 ;
 	YY_BREAK
-case 9:
+case 8:
 YY_RULE_SETUP
-#line 67 "src/main.l"
+#line 62 "src/main.l"
 ECHO;
 	YY_BREAK
-#line 845 "src/main.c"
+#line 837 "src/main.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1842,7 +1834,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 67 "src/main.l"
+#line 62 "src/main.l"
 
 
 
